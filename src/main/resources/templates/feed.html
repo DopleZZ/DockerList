@@ -60,13 +60,13 @@
                         th:if="${container.stat == 'sleeping'}"
                         class="btn btn-success btn-sm"
                         th:text="'Start'"
-                        th:attr="onclick='toggleContainer(\'' + ${container.container_id} + '\', \'' + ${container.stat} + '\')'">
+                        th:attr="onclick='toggleContainer(\'' + ${container.container_id} + '\', \'' + 'start' + '\')'">
                 </button>
                 <button
                         th:if="${container.stat == 'active'}"
                         class="btn btn-danger btn-sm"
                         th:text="'Stop'"
-                        th:attr="onclick='toggleContainer(\'' + ${container.container_id} + '\', \'' + ${container.stat} + '\')'">
+                        th:attr="onclick='toggleContainer(\'' + ${container.container_id} + '\', \'' + 'stop' + '\')'">
                 </button>
             </td>
         </tr>

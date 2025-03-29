@@ -1,5 +1,6 @@
 package com.DockerList.DL.Service;
 
+import com.DockerList.DL.Enums.CommandEnum;
 import com.DockerList.DL.Logic.ScriptRunner;
 import com.DockerList.DL.Model.Container;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class ContainerService {
     }
 
     public void updateContainers() {
-        List<Container> newContainers = sc.getContainers();
+        List<Container> newContainers = sc.executeCommand(CommandEnum.LIST);
         if (newContainers != null) {
             this.containers = newContainers;
         }
@@ -31,10 +32,10 @@ public class ContainerService {
     }
 
     public void toggleContainer(String id, String stat) {
-        if (stat.equals("active")) {
-            sc.stopContainer(id);
-        } else if (stat.equals("sleeping")) {
-            sc.startContainer(id);
+        if (stat.equals("start")) {
+            sc.executeCommand(CommandEnum.START, id);
+            return;
         }
+        sc.executeCommand(CommandEnum.STOP, id);
     }
 }

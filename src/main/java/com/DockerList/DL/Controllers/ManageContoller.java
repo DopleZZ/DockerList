@@ -21,9 +21,6 @@ public class ManageContoller {
     public Map<String, Boolean> toggle(@RequestBody Request request) {
         String id = request.getContainer_id();
         String stat = request.getStat();
-        System.out.println("получен запрос");
-        System.out.println(id);
-        System.out.println(stat);
         containerService.toggleContainer(id, stat);
         return Map.of("success", true);
     }
