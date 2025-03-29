@@ -9,11 +9,7 @@ public class ScriptRunner {
     public List<Container> getContainers(){
         Parser parser = new Parser();
         try {
-            File scriptFile = new File("src/main/java/com/DockerList/DL/Scripts/PS.sh").getAbsoluteFile();
-            scriptFile.setExecutable(true);
-            ProcessBuilder pb = new ProcessBuilder(scriptFile.getPath());
-            pb.inheritIO();
-            pb.directory(scriptFile.getParentFile());
+            ProcessBuilder pb = new ProcessBuilder("docker", "ps", "-a");
             Process process = pb.start();
             process.waitFor();
             File outputFile = new File("src/main/java/com/DockerList/DL/Scripts/output.txt");
