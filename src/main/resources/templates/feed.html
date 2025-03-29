@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список контейнеров</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h2 class="mb-4">Docker Контейнеры</h2>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Container ID</th>
+            <th>Image</th>
+            <th>Command</th>
+            <th>Created</th>
+            <th>Status</th>
+            <th>Ports</th>
+            <th>Names</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="container : ${containers}">
+            <td th:text="${container.container_id}"></td>
+            <td th:text="${container.image}"></td>
+            <td th:text="${container.command}"></td>
+            <td th:text="${container.created}"></td>
+            <td th:text="${container.status}"></td>
+            <td th:text="${container.ports}"></td>
+            <td th:text="${container.names}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
