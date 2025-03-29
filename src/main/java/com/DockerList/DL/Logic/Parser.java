@@ -1,21 +1,17 @@
 package com.DockerList.DL.Logic;
 
 import com.DockerList.DL.Model.Container;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
 
-    public List<Container> parseContainersList(File file) throws FileNotFoundException {
+    public List<Container> parseContainersList(List<String> lines) throws FileNotFoundException {
         List<Container> containers = new ArrayList<>();
-        try(BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String header = reader.readLine();
-            if (header == null || header.isEmpty()) return containers;
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.trim().split("\\s{2,}");
+        for (int i =1; i<lines.size(); i++) {
+            String line = lines.get(i).trim();
+            String[] parts = line.split("\\s{2,}");
                 if (parts.length != 7) {
                     containers.add(new Container(
                             parts[0],
@@ -39,9 +35,6 @@ public class Parser {
                     //ToDo destroy ^
                 }
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         return containers;
     }
 }
