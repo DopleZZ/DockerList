@@ -4,6 +4,31 @@
     <meta charset="UTF-8">
     <title>Список контейнеров</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script>
+        function toggleContainer(containerId, currentState) {
+            console.log('Container ID:', containerId);
+            console.log('Current State:', currentState);
+            fetch('http://localhost:8080/toggle', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    container_id: containerId,
+                    stat: currentState
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert('Ошибка: ' + data.message);
+                    }
+                })
+                .catch(error => console.error('Ошибка:', error));
+        }
+    </script>
 </head>
 <body class="bg-light">
 <div class="container mt-5">
@@ -18,6 +43,7 @@
             <th>Status</th>
             <th>Ports</th>
             <th>Names</th>
+            <th>stat</th>
         </tr>
         </thead>
         <tbody>
@@ -29,6 +55,20 @@
             <td th:text="${container.status}"></td>
             <td th:text="${container.ports}"></td>
             <td th:text="${container.names}"></td>
+            <td>
+                <button
+                        th:if="${container.stat == 'sleeping'}"
+                        class="btn btn-success btn-sm"
+                        th:text="'Start'"
+                        th:attr="onclick='toggleContainer(\'' + ${container.container_id} + '\', \'' + ${container.stat} + '\')'">
+                </button>
+                <button
+                        th:if="${container.stat == 'active'}"
+                        class="btn btn-danger btn-sm"
+                        th:text="'Stop'"
+                        th:attr="onclick='toggleContainer(\'' + ${container.container_id} + '\', \'' + ${container.stat} + '\')'">
+                </button>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -1,4 +1,0 @@
-CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS                      PORTS     NAMES
-74fb96149af3   list:latest       "java -jar app.jar"      16 hours ago   Exited (143) 16 hours ago             dl-app-1
-1dc803b4ebd4   web3-wildfly      "/opt/bitnami/script…"   2 months ago   Exited (0) 15 hours ago               web3-wildfly-1
-57ff21581d81   postgres:latest   "docker-entrypoint.s…"   3 months ago   Exited (0) 15 hours ago               web3-database-1

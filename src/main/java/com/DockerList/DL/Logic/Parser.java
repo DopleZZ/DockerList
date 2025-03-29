@@ -20,7 +20,8 @@ public class Parser {
                             parts[3],
                             parts[4],
                             "none",
-                            parts[5]
+                            parts[5],
+                            (parts[4].contains("Up")) ? "active" : "sleeping"
                     ));
                 } else {
                     containers.add(new Container(
@@ -30,7 +31,9 @@ public class Parser {
                             parts[3],
                             parts[4],
                             parts[5],
-                            parts[6]
+                            parts[6],
+                            (parts[4].contains("Up")) ? "active" : "sleeping"
+
                     ));
                     //ToDo destroy ^
                 }
