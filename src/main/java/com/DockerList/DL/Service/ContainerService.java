@@ -4,7 +4,6 @@ import com.DockerList.DL.Logic.ScriptRunner;
 import com.DockerList.DL.Model.Container;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -31,17 +30,7 @@ public class ContainerService {
         return containers;
     }
 
-    public Container ContainerById(String id) {
-        for (Container container : containers) {
-            if (container.getContainer_id().equals(id)) {
-                return container;
-            }
-        }
-        return null;
-    }
-
     public void toggleContainer(String id, String stat) {
-        System.out.println("принимаем решение");
         if (stat.equals("active")) {
             sc.stopContainer(id);
         } else if (stat.equals("sleeping")) {
