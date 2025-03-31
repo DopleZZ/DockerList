@@ -42,6 +42,7 @@ public class ScriptRunner {
             while ((line = reader.readLine()) != null) { outputLines.add(line); }
             process.waitFor();
             return parser.parseContainersList(outputLines);
+            //ToDo think about refactor duplicated code
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

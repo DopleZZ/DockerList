@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
-
     public List<Container> parseContainersList(List<String> lines) throws FileNotFoundException {
         List<Container> containers = new ArrayList<>();
         for (int i =1; i<lines.size(); i++) {
